@@ -5,8 +5,8 @@ import (
     "fmt"
   
     _ "github.com/lib/pq"
-    "github.com/gocdc/postgres"
-    "github.com/gocdc/kafka"
+    "github.com/ThiagoSilvaF/gocdc/postgres"
+    "github.com/ThiagoSilvaF/gocdc/kafka"
 
 )
 
