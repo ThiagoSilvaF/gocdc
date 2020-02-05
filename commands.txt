@@ -1,0 +1,10 @@
+docker-compose up
+access db: docker exec -it my_postgres psql -U postgres postgres
+
+reference for PG CDC : https://www.postgresql.org/docs/9.5/logicaldecoding-example.html
+
+
+build go app with vendor: go build -mod vendor 
+
+
+
