@@ -4,6 +4,7 @@ import (
 	"github.com/gorilla/mux"
 	"encoding/json"
 	"net/http"
+	log "github.com/sirupsen/logrus"
 )
 
 // Connector struct
@@ -17,6 +18,7 @@ var connectors []Connector
 
 // InitAPI - Initialize the Connector's endpoints
 func InitAPI() {
+	log.Info("Initializing Rest API")
 	router := mux.NewRouter()  
 	
 	router.HandleFunc("/connectors", getConnectors).Methods("GET")
@@ -29,26 +31,32 @@ func InitAPI() {
 }
 
 func getConnectors(w http.ResponseWriter, r *http.Request) {
+	log.Info("Calling getConnectors")
 	w.Header().Set("Content-Type", "application/json")
-  	json.NewEncoder(w).Encode(connectors)	
+	json.NewEncoder(w).Encode(connectors)
+	  
 }
 
 func createConnector(w http.ResponseWriter, r *http.Request) {
+	log.Info("Calling createConnector")
 	w.Header().Set("Content-Type", "application/json")
   	json.NewEncoder(w).Encode(connectors)	
 }
 
 func getConnector(w http.ResponseWriter, r *http.Request) {
+	log.Info("Calling getConnector")
 	w.Header().Set("Content-Type", "application/json")
   	json.NewEncoder(w).Encode(connectors)	
 }
 
 func updateConnector(w http.ResponseWriter, r *http.Request) {
+	log.Info("Calling updateConnector")
 	w.Header().Set("Content-Type", "application/json")
   	json.NewEncoder(w).Encode(connectors)	
 }
 
 func deleteConnector(w http.ResponseWriter, r *http.Request) {
+	log.Info("Calling deleteConnector")
 	w.Header().Set("Content-Type", "application/json")
   	json.NewEncoder(w).Encode(connectors)	
 }

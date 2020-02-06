@@ -3,9 +3,8 @@ package postgres
 import (
     "database/sql"
     _ "github.com/lib/pq"
-    "log"
+	log "github.com/sirupsen/logrus"
     "time"
-    "fmt"
 )
 
 var db *sql.DB
@@ -20,15 +19,18 @@ type postgresqlSlots struct {
 	  PostgresqlSlots []postgresqlSlot
 }
 
+//InitDB - initialize connection with PostgresDB
 func InitDB(dataSourceName string)   {
+	log.Info("Initializing connection with PostgresDB!")
+
     var err error
     db, err = sql.Open("postgres", dataSourceName)
     if err != nil {
-        log.Panic(err)
+        log.Fatal(err)
     }
 
     if err = db.Ping(); err != nil {
-        log.Panic(err)
+        log.Fatal(err)
    }
    
    slots := postgresqlSlots{}
@@ -36,7 +38,7 @@ func InitDB(dataSourceName string)   {
     cdc(&slots, db)
     time.Sleep(2 * time.Second)
 
-    fmt.Println(slots)
+    log.Info(slots)
   } 
 	
 }

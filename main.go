@@ -1,8 +1,8 @@
 package main 
 
 import (
-    "fmt"
-  
+	log "github.com/sirupsen/logrus"
+	"fmt"
     _ "github.com/lib/pq"
     "github.com/ThiagoSilvaF/gocdc/utility/postgres"
     "github.com/ThiagoSilvaF/gocdc/utility/kafka"
@@ -19,9 +19,8 @@ const (
 
 func main() {
 
-	fmt.Printf("going to call kafka")
+	log.Info("*** Initializing APP ***")
 
-	api.InitAPI()
 	kafka.SendMessage()
 
     psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
@@ -30,5 +29,5 @@ func main() {
 
     postgres.InitDB(psqlInfo)
   
-
+	api.InitAPI()
 }
