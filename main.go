@@ -4,8 +4,13 @@ import (
     "fmt"
   
     _ "github.com/lib/pq"
+<<<<<<< HEAD
     "gocdc/postgres"
     "gocdc/kafka"
+=======
+    "github.com/ThiagoSilvaF/gocdc/postgres"
+    "github.com/ThiagoSilvaF/gocdc/kafka"
+>>>>>>> e315284927f0f61ecd881353b0e80297b78869b1
 
 )
 
