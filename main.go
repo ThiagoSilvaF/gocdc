@@ -1,12 +1,11 @@
 package main 
 
 import (
-    "database/sql"
     "fmt"
   
     _ "github.com/lib/pq"
-    "github.com/gocdc/postgres"
-    "github.com/gocdc/kafka"
+    "gocdc/postgres"
+    "gocdc/kafka"
 
 )
 
@@ -22,6 +21,10 @@ var db_name = "POSTGRES"
 
 func main() {
 
+  fmt.Printf("going to call kafka")
+
+  kafka.SendMessage()
+
   if db_name == "POSTGRES" {
     psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
       "password=%s sslmode=disable",
@@ -30,5 +33,4 @@ func main() {
     postgres.InitDB(psqlInfo)
   }
 
-  kafka.SendMessage()
 }
