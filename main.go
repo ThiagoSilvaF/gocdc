@@ -4,9 +4,9 @@ import (
     "fmt"
   
     _ "github.com/lib/pq"
-    "gocdc/postgres"
-    "gocdc/kafka"
-
+    "github.com/ThiagoSilvaF/gocdc/utility/postgres"
+    "github.com/ThiagoSilvaF/gocdc/utility/kafka"
+	"github.com/ThiagoSilvaF/gocdc/utility/api"
 )
 
 const (
@@ -17,20 +17,18 @@ const (
     dbname   = "inventory"
 )
 
-var db_name = "POSTGRES"
-
 func main() {
 
-  fmt.Printf("going to call kafka")
+	fmt.Printf("going to call kafka")
 
-  kafka.SendMessage()
+	api.InitAPI()
+	kafka.SendMessage()
 
-  if db_name == "POSTGRES" {
     psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
       "password=%s sslmode=disable",
       host, port, user, password)
 
     postgres.InitDB(psqlInfo)
-  }
+  
 
 }

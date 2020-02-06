@@ -2,9 +2,8 @@ module github.com/ThiagoSilvaF/gocdc
 
 go 1.13
 
-require github.com/lib/pq v1.3.0
-
-replace (
-	gocdc/kafka v0.0.0 => ./gocdc/kafka
-	gocdc/postgres v0.0.0 => ./gocdc/postgres
+require (
+	github.com/Shopify/sarama v1.26.1
+	github.com/gorilla/mux v1.7.3
+	github.com/lib/pq v1.3.0
 )

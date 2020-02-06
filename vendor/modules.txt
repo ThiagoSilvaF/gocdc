@@ -10,6 +10,8 @@ github.com/eapache/go-xerial-snappy
 github.com/eapache/queue
 # github.com/golang/snappy v0.0.1
 github.com/golang/snappy
+# github.com/gorilla/mux v1.7.3
+github.com/gorilla/mux
 # github.com/hashicorp/go-uuid v1.0.2
 github.com/hashicorp/go-uuid
 # github.com/jcmturner/gofork v1.0.0
@@ -30,11 +32,7 @@ github.com/pierrec/lz4
 github.com/pierrec/lz4/internal/xxh32
 # github.com/rcrowley/go-metrics v0.0.0-20190826022208-cac0b30c2563
 github.com/rcrowley/go-metrics
-<<<<<<< HEAD
-# golang.org/x/crypto v0.0.0-20200206161412-a0c6ece9d31a
-=======
 # golang.org/x/crypto v0.0.0-20200204104054-c9f3fb736b72
->>>>>>> e315284927f0f61ecd881353b0e80297b78869b1
 golang.org/x/crypto/md4
 golang.org/x/crypto/pbkdf2
 # golang.org/x/net v0.0.0-20200202094626-16171245cfb2
