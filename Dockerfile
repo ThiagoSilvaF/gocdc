@@ -1,44 +1,28 @@
-FROM openjdk:8u212-jre-alpine
+# Dockerfile References: https://docs.docker.com/engine/reference/builder/
 
-ARG kafka_version=2.4.0
-ARG scala_version=2.12
-ARG glibc_version=2.30-r0
-ARG vcs_ref=unspecified
-ARG build_date=unspecified
+# Start from the latest golang base image
+FROM golang:latest
 
-LABEL org.label-schema.name="kafka" \
-      org.label-schema.description="Apache Kafka" \
-      org.label-schema.build-date="${build_date}" \
-      org.label-schema.vcs-url="https://github.com/wurstmeister/kafka-docker" \
-      org.label-schema.vcs-ref="${vcs_ref}" \
-      org.label-schema.version="${scala_version}_${kafka_version}" \
-      org.label-schema.schema-version="1.0" \
-      maintainer="wurstmeister"
+# Add Maintainer Info
+LABEL maintainer="Thiago F da Silva <133.thiago@gmail.com>"
 
-ENV KAFKA_VERSION=$kafka_version \
-    SCALA_VERSION=$scala_version \
-    KAFKA_HOME=/opt/kafka \
-    GLIBC_VERSION=$glibc_version
+# Set the Current Working Directory inside the container
+WORKDIR /app
 
-ENV PATH=${PATH}:${KAFKA_HOME}/bin
+# Copy go mod and sum files
+COPY go.mod go.sum ./
 
-COPY download-kafka.sh start-kafka.sh broker-list.sh create-topics.sh versions.sh /tmp/
+# Download all dependencies. Dependencies will be cached if the go.mod and go.sum files are not changed
+RUN go mod download
 
-RUN apk add --no-cache bash curl jq docker \
- && chmod a+x /tmp/*.sh \
- && mv /tmp/start-kafka.sh /tmp/broker-list.sh /tmp/create-topics.sh /tmp/versions.sh /usr/bin \
- && sync && /tmp/download-kafka.sh \
- && tar xfz /tmp/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz -C /opt \
- && rm /tmp/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz \
- && ln -s /opt/kafka_${SCALA_VERSION}-${KAFKA_VERSION} ${KAFKA_HOME} \
- && rm /tmp/* \
- && wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk \
- && apk add --no-cache --allow-untrusted glibc-${GLIBC_VERSION}.apk \
- && rm glibc-${GLIBC_VERSION}.apk
+# Copy the source from the current directory to the Working Directory inside the container
+COPY . .
 
-COPY overrides /opt/overrides
+# Build the Go app
+RUN go build -o main .
 
-VOLUME ["/kafka"]
+# Expose port 8080 to the outside world
+EXPOSE 8000
 
-# Use "exec" form so that it runs as PID 1 (useful for graceful shutdown)
-CMD ["start-kafka.sh"]
+# Command to run the executable
+CMD ["./main"]
