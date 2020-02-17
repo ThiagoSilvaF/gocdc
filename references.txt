@@ -1,1 +1,0 @@
-https://github.com/abhirockzz/kafka-go-docker-quickstart/blob/master/producer/kafka-producer.go

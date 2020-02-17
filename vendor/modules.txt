@@ -2,15 +2,22 @@
 github.com/Shopify/sarama
 # github.com/davecgh/go-spew v1.1.1
 github.com/davecgh/go-spew/spew
+# github.com/denisenkom/go-mssqldb v0.0.0-20200206145737-bbfc9a55622e
+github.com/denisenkom/go-mssqldb
+github.com/denisenkom/go-mssqldb/internal/cp
+github.com/denisenkom/go-mssqldb/internal/decimal
+github.com/denisenkom/go-mssqldb/internal/querytext
 # github.com/eapache/go-resiliency v1.2.0
 github.com/eapache/go-resiliency/breaker
 # github.com/eapache/go-xerial-snappy v0.0.0-20180814174437-776d5712da21
 github.com/eapache/go-xerial-snappy
 # github.com/eapache/queue v1.1.0
 github.com/eapache/queue
+# github.com/golang-sql/civil v0.0.0-20190719163853-cb61b32ac6fe
+github.com/golang-sql/civil
 # github.com/golang/snappy v0.0.1
 github.com/golang/snappy
-# github.com/gorilla/mux v1.7.3
+# github.com/gorilla/mux v1.7.4
 github.com/gorilla/mux
 # github.com/hashicorp/go-uuid v1.0.2
 github.com/hashicorp/go-uuid
